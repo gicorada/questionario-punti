@@ -1,6 +1,6 @@
 let ris_questionario;
 
-let pesi = [0, 0, 5, 0, 5, 0, 0, 10, 7, 7, 8, 0, 10, 12, 12, 10, 2, 10, 0, 10, 20, 5, 0, 7, 0, 8, 5, 0, 7, 10, 0, 15, 10, 10]
+let pesi = [5, 0, 5, 0, 0, 10, 7, 7, 8, 0, 10, 12, 12, 10, 2, 10, 0, 10, 20, 5, 0, 7, 0, 8, 5, 0, 7, 10, 0, 15, 10, 10];
 
 document.getElementById('uploadForm').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -31,166 +31,248 @@ function processFile(content) {
 }
 
 function parseAnswers() {
-    let punteggio = 0;
+    let punteggi = Array(31).fill(0);
+    let dati = document.getElementById('dati');
+    dati.innerHTML = "";
 
-    document.getElementById('presentazione').innerText = "Ciao " + ris_questionario[1];
     //Hai entrambi i genitori?
-    if (ris_questionario[2] == "Sì") {
-        punteggio += pesi[2];
+    let d0 = "Hai entrambi i genitori?";
+    if (ris_questionario[0] == "Sì") {
+        punteggi[0] = pesi[0];
     }
+    dati.innerHTML += `<p> ${d0}: ${ris_questionario[0]} (${punteggi[0]}/${pesi[0]})</p>`;
 
     //Quale ti manca?
+    let d1 = "Quale ti manca?";
+    if(ris_questionario[1] != "") {
+        dati.innerHTML += `<p> ${d1}: ${ris_questionario[1]} (${punteggi[1]}/${pesi[1]})</p>`;
+    }
     //Punteggio non assegnato
 
     //Hai problemi con i tuoi genitori?
-    if (ris_questionario[4] == "No") {
-        punteggio += pesi[4];
+    let d2 = "Hai problemi con i tuoi genitori?";
+    if (ris_questionario[2] == "No") {
+        punteggi[2] = pesi[2];
     }
+    dati.innerHTML += `<p> ${d2}: ${ris_questionario[2]} (${punteggi[2]}/${pesi[2]})</p>`;
 
     //Con quale?
+    let d3 = "Con quale?";
+    if(ris_questionario[3] != "") {
+        dati.innerHTML += `<p> ${d3}: ${ris_questionario[3]} (${punteggi[3]}/${pesi[3]})</p>`;
+    }
     //Punteggio non assegnato
 
     //Ho problemi perché...
+    let d4 = "Ho problemi perché...";
+    if(ris_questionario[4] != "") {
+        dati.innerHTML += `<p> ${d4}: ${ris_questionario[4]} (${punteggi[4]}/${pesi[4]})</p>`;
+    }
     //Punteggio non assegnato
 
     //Hai pensieri sessuali con membri della tua famiglia?
-    if (ris_questionario[7] == "No") {
-        punteggio += pesi[7];
+    let d5 = "Hai pensieri sessuali con membri della tua famiglia?";
+    if (ris_questionario[5] == "No") {
+        punteggi[5] = pesi[5];
     }
+    dati.innerHTML += `<p> ${d5}: ${ris_questionario[5]} (${punteggi[5]}/${pesi[5]})</p>`;
 
     //Hai problemi nel controllo della rabbia?
-    if (ris_questionario[8] == "No") {
-        punteggio += pesi[8];
-    } else if (ris_questionario[8] == "Sì, ma poco") {
-        punteggio += pesi[8] / 2;
+    let d6 = "Hai problemi nel controllo della rabbia?";
+    if (ris_questionario[6] == "No") {
+        punteggi[6] = pesi[6];
+    } else if (ris_questionario[6] == "Sì, ma poco") {
+        punteggi[6] = pesi[6] / 2;
     }
+    dati.innerHTML += `<p> ${d6}: ${ris_questionario[6]} (${punteggi[6]}/${pesi[6]})</p>`;
 
     //Sei vegano o vegetariano?
-    if (ris_questionario[9] == "Nessuno di questi") {
-        punteggio += pesi[9];
-    } else if (ris_questionario[9] == "Vegetariano") {
-        punteggio += pesi[9]/2;
+    let d7 = "Sei vegano o vegetariano?";
+    if (ris_questionario[7] == "Nessuno di questi") {
+        punteggi[7] = pesi[7];
+    } else if (ris_questionario[7] == "Vegetariano") {
+        punteggi[7] = pesi[7]/2;
     } else {
-        punteggio += pesi[9]/10;
+        punteggi[7] = pesi[7]/10;
     }
+    dati.innerHTML += `<p> ${d7}: ${ris_questionario[7]} (${punteggi[7]}/${pesi[7]})</p>`;
 
     //Hai traumi?
-    if (ris_questionario[10] == "No") {
-        punteggio += pesi[10];
+    let d8 = "Hai traumi?";
+    if (ris_questionario[8] == "No") {
+        punteggi[8] = pesi[8];
     }
+    dati.innerHTML += `<p> ${d8}: ${ris_questionario[8]} (${punteggi[8]}/${pesi[8]})</p>`;
 
     //Quali pensi siano?
+    let d9 = "Quali pensi siano?";
+    if(ris_questionario[9] != "") {
+        dati.innerHTML += `<p> ${d9}: ${ris_questionario[9]} (${punteggi[9]}/${pesi[9]})</p>`;
+    }
     //Punteggio non assegnato
 
     //Durante l'erezione del tuo fallo, esso pende orizzontalmente in qualche direzione?
-    if (ris_questionario[12] == "No, è dritto") {
-        punteggio += pesi[12];
+    let d10 = "Durante l'erezione del tuo fallo, esso pende orizzontalmente in qualche direzione?";
+    if (ris_questionario[10] == "No, è dritto") {
+        punteggi[10] = pesi[10];
     }
+    dati.innerHTML += `<p> ${d10}: ${ris_questionario[10]} (${punteggi[10]}/${pesi[10]})</p>`;
 
     //Sei segretamente attratto da persone del tuo stesso sesso?
-    if (ris_questionario[13] == "No") { // TODO
-        punteggio += pesi[13];
+    let d11 = "Sei segretamente attratto da persone del tuo stesso sesso?";
+    if (ris_questionario[11] == "No") {
+        punteggi[11] = pesi[11];
     } else {
-        punteggio += pesi[13]/2;
+        punteggi[11] = pesi[11]/2;
     }
+    dati.innerHTML += `<p> ${d11}: ${ris_questionario[11]} (${punteggi[11]}/${pesi[11]})</p>`;
 
     //Quando limoni, fai l'aspirapolvere?
-    if (ris_questionario[14] == "No" || ris_questionario[14] == "Non ho mai limonato") {
-        punteggio += pesi[14];
+    let d12 = "Quando limoni, fai l'aspirapolvere?";
+    if (ris_questionario[12] == "No" || ris_questionario[12] == "Non ho mai limonato") {
+        punteggi[12] = pesi[12];
     }
+    dati.innerHTML += `<p> ${d12}: ${ris_questionario[12]} (${punteggi[12]}/${pesi[12]})</p>`;
 
     //Hai moto o macchina?
-    if (ris_questionario[15] == "Moto" || ris_questionario[15] == "Macchina") {
-        punteggio += pesi[15]/2;
-    } else if (ris_questionario[15] == "Macchina e moto") {
-        punteggio += pesi[15];
+    let d13 = "Hai moto o macchina?";
+    if (ris_questionario[13] == "Moto" || ris_questionario[13] == "Macchina") {
+        punteggi[13] = pesi[13]/2;
+    } else if (ris_questionario[13] == "Macchina e moto") {
+        punteggi[13] = pesi[13];
     }
+    dati.innerHTML += `<p> ${d13}: ${ris_questionario[13]} (${punteggi[13]}/${pesi[13]})</p>`;
 
     //Puoi usarla/e?
-    if (ris_questionario[16] == "Sì") {
-        punteggio += pesi[16];
+    let d14 = "Puoi usarla/e?";
+    if (ris_questionario[14] == "Sì") {
+        punteggi[14] = pesi[14];
+        dati.innerHTML += `<p> ${d14}: ${ris_questionario[14]} (${punteggi[14]}/${pesi[14]})</p>`;
     }
 
     //Hai fetish?
-    if (ris_questionario[17] == "Sono mentalmente aperto") {
-        punteggio += pesi[17];
-    } else if(ris_questionario[17] == "No") {
-        punteggio += pesi[17]/2;
+    let d15 = "Hai fetish?";
+    if (ris_questionario[15] == "Sono mentalmente aperto") {
+        punteggi[15] = pesi[15];
+    } else if(ris_questionario[15] == "No") {
+        punteggi[15] = pesi[15]/2;
     } else {
-        punteggio += pesi[17]/2;
+        punteggi[15] = pesi[15]/2;
     }
+    dati.innerHTML += `<p> ${d15}: ${ris_questionario[15]} (${punteggi[15]}/${pesi[15]})</p>`;
 
     //Quale/i?
+    let d16 = "Quale/i?";
+    if(ris_questionario[16] != "") {
+        dati.innerHTML += `<p> ${d16}: ${ris_questionario[16]} (${punteggi[16]}/${pesi[16]})</p>`;
+    }
     //Punteggio non assegnato
 
     //I tuoi genitori (o anche solo uno) ti chiamano ogni cinque secondi?
-    if (ris_questionario[19] == "No") {
-        punteggio += pesi[19];
+    let d17 = "I tuoi genitori (o anche solo uno) ti chiamano ogni cinque secondi?";
+    if (ris_questionario[17] == "No") {
+        punteggi[17] = pesi[17];
     }
+    dati.innerHTML += `<p> ${d17}: ${ris_questionario[17]} (${punteggi[17]}/${pesi[17]})</p>`;
 
     //Sei maranza?
-    if (ris_questionario[20] == "No") {
-        punteggio += pesi[20];
+    let d18 = "Sei maranza?";
+    if (ris_questionario[18] == "No") {
+        punteggi[18] = pesi[18];
     }
+    dati.innerHTML += `<p> ${d18}: ${ris_questionario[18]} (${punteggi[18]}/${pesi[18]})</p>`;
 
     //Hai problemi di pronuncia?
-    if (ris_questionario[21] == "No") {
-        punteggio += pesi[21];
+    let d19 = "Hai problemi di pronuncia?";
+    if (ris_questionario[19] == "No") {
+        punteggi[19] = pesi[19];
     }
+    dati.innerHTML += `<p> ${d19}: ${ris_questionario[19]} (${punteggi[19]}/${pesi[19]})</p>`;
 
     //Sei dislessico, discalculico, confondi la destra con la sinistra?
+    let d20 = "Sei dislessico, discalculico, confondi la destra con la sinistra?";
+    if (ris_questionario[20] != "") {
+        dati.innerHTML += `<p> ${d20}: ${ris_questionario[20]} (${punteggi[20]}/${pesi[20]})</p>`;
+    }
     //Punteggio non assegnato
 
     //Hai problemi mentali certificati (BPD, ADHD, autismo ecc...)?
-    if (ris_questionario[23] == "No") {
-        punteggio += pesi[23];
+    let d21 = "Hai problemi mentali certificati (BPD, ADHD, autismo ecc...)?";
+    if (ris_questionario[21] == "No") {
+        punteggi[21] = pesi[21];
     }
+    dati.innerHTML += `<p> ${d21}: ${ris_questionario[21]} (${punteggi[21]}/${pesi[21]})</p>`;
 
     //Quali?
+    let d22 = "Quali?";
+    if(ris_questionario[22] != "") {
+        dati.innerHTML += `<p> ${d22}: ${ris_questionario[22]} (${punteggi[22]}/${pesi[22]})</p>`;
+    }
     //Punteggio non assegnato
 
     //Descrivi i tuoi hobby
-    if (ris_questionario[25] != "") {
-        punteggio += pesi[25];
+    let d23 = "Descrivi i tuoi hobby";
+    if (ris_questionario[23] != "") {
+        punteggi[23] = pesi[23];
     }
+    dati.innerHTML += `<p> ${d23}: ${ris_questionario[23]} (${punteggi[23]}/${pesi[23]})</p>`;
 
     //Ti piace la F1?
-    if (ris_questionario[26] == "Sì" || ris_questionario == "Sni") {
-        punteggio += pesi[26];
+    let d24 = "Ti piace la F1?";
+    if (ris_questionario[24] == "Sì" || ris_questionario == "Sni") {
+        punteggi[24] = pesi[24];
     }
+    dati.innerHTML += `<p> ${d24}: ${ris_questionario[24]} (${punteggi[24]}/${pesi[24]})</p>`;
 
     //Per chi tifi?
+    let d25 = "Per chi tifi?";
+    if(ris_questionario[25] != "") {
+        dati.innerHTML += `<p> ${d25}: ${ris_questionario[25]} (${punteggi[25]}/${pesi[25]})</p>`;
+    }
     //Punteggio non assegnato
 
     //Sei un maniaco del calcio?
-    if (ris_questionario[28] == "No") {
-        punteggio += pesi[28];
+    let d26 = "Sei un maniaco del calcio?";
+    if (ris_questionario[26] == "No") {
+        punteggi[26] = pesi[26];
     }
+    dati.innerHTML += `<p> ${d26}: ${ris_questionario[26]} (${punteggi[26]}/${pesi[26]})</p>`;
 
     //Ti piace leccare la barbagianna?
-    if (ris_questionario[29] == "Sì") {
-        punteggio += pesi[29];
+    let d27 = "Ti piace leccare la barbagianna?";
+    if (ris_questionario[27] == "Sì") {
+        punteggi[27] = pesi[27];
     }
+    dati.innerHTML += `<p> ${d27}: ${ris_questionario[27]} (${punteggi[27]}/${pesi[27]})</p>`;
 
     //Lo sai fare?
-    if (ris_questionario[30] == "Boia sì") {
-        punteggio += pesi[30];
+    let d28 = "Lo sai fare?";
+    if (ris_questionario[28] == "Boia sì") {
+        punteggi[28] = pesi[28];
     }
+    dati.innerHTML += `<p> ${d28}: ${ris_questionario[28]} (${punteggi[28]}/${pesi[28]})</p>`;
 
     //Sei un maniaco di brawl stars?
-    if (ris_questionario[31] == "No") {
-        punteggio += pesi[31];
+    let d29 = "Sei un maniaco di brawl stars?";
+    if (ris_questionario[29] == "No") {
+        punteggi[29] = pesi[29];
     }
+    dati.innerHTML += `<p> ${d29}: ${ris_questionario[29]} (${punteggi[29]}/${pesi[29]})</p>`;
 
     //Hai mai avuto una relazione?
-    if (ris_questionario[32] == "Sì") {
-        punteggio += pesi[32];
+    let d30 = "Hai mai avuto una relazione?";
+    if (ris_questionario[30] == "Sì") {
+        punteggi[30] = pesi[30];
     }
+    dati.innerHTML += `<p> ${d30}: ${ris_questionario[30]} (${punteggi[30]}/${pesi[30]})</p>`;
 
     //Hai mai scopato?
-    if (ris_questionario[33] == "Sì" || ris_questionario[33] == "Sì, mezzo mondo") {
-        punteggio += pesi[33];
+    let d31 = "Hai mai scopato?";
+    if (ris_questionario[31] == "Sì" || ris_questionario[31] == "Sì, mezzo mondo") {
+        punteggi[31] = pesi[31];
     }
+    dati.innerHTML += `<p> ${d31}: ${ris_questionario[31]} (${punteggi[31]}/${pesi[31]})</p>`;
 
+    let punteggio = punteggi.reduce((a, b) => a + b, 0);
     document.getElementById('punteggio').innerText = Math.round(punteggio);
 }
