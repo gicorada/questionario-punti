@@ -98,7 +98,7 @@ function processFile(content) {
 }
 
 function parseAnswers() {
-    let punteggi = Array(31).fill(0);
+    let punteggi = Array(32).fill(0);
     let dati = document.getElementById('dati');
     dati.innerHTML = "";
 
